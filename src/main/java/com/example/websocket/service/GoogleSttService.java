@@ -26,8 +26,8 @@ public class GoogleSttService {
             logger.info("init() -- Google SpeechClient initialized successfully.");
             logger.info("-------------");
         } catch (IOException e) {
+            // deliberate
             logger.error("Failed to initialize Google SpeechClient", e);
-            throw new RuntimeException("Could not initialize Google SpeechClient", e);
         }
     }
 
