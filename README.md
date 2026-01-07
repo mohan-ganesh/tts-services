@@ -1,14 +1,49 @@
 # Spring Boot WebSocket TTS/STT Demo
 
-This project demonstrates a full-duplex voice conversation with a backend service using Spring Boot for WebSockets, Google Cloud Speech-to-Text (STT), and Google Cloud Text-to-Speech (TTS).
+This project demonstrates a full-duplex, real-time voice conversation with a backend service using **Spring Boot WebSockets**, **Google Cloud Speech-to-Text (STT)**, and **Google Cloud Text-to-Speech (TTS)**.
 
-## Features
+It also serves as a **reference implementation** for handling large binary WebSocket messages (e.g., audio payloads) in Spring Boot applications running on Tomcat.
 
-- **WebSocket Communication**: Uses STOMP over WebSockets for real-time, bidirectional communication between the client and server.
-- **Voice Recording**: The frontend can record audio from the user's microphone.
-- **Speech-to-Text**: The recorded audio is sent to the backend, transcribed to text using Google Cloud STT.
-- **Text-to-Speech**: The backend generates a spoken response using Google Cloud TTS and sends the audio back to the client for playback.
-- **Configurable Message Size**: Includes configuration to handle large WebSocket messages, which is common when sending audio data.
+
+---
+
+## 📘 Documentation & Root Cause Analysis
+
+This repository is directly related to a real-world production issue involving **silent WebSocket disconnects** caused by Tomcat’s default **8KB message buffer limit**.
+
+A detailed investigation, reproduction steps, root cause analysis, and production-ready fix are documented here:
+
+👉 **Debugging Silent WebSocket Disconnects: Taming the 8KB Tomcat Limit in Spring Boot**  
+https://www.garvik.dev/spring-boot/websocket-tomcat-buffer-limit
+
+--
+
+## ✨ Features
+
+- **WebSocket Communication**  
+  Uses STOMP over WebSockets for real-time, bidirectional communication.
+
+- **Voice Recording**  
+  The frontend records audio directly from the user’s microphone.
+
+- **Speech-to-Text (STT)**  
+  Audio is streamed to the backend and transcribed using Google Cloud STT.
+
+- **Text-to-Speech (TTS)**  
+  The backend generates synthesized speech using Google Cloud TTS and streams it back to the client.
+
+- **Large Message Handling**  
+  Demonstrates safe handling of large WebSocket payloads (audio frames), including Tomcat and Spring WebSocket buffer configuration.
+
+---
+
+## 🧪 Simulating and Fixing Large WebSocket Message Issues
+
+A common production issue with WebSockets is handling messages that exceed the default buffer sizes enforced by **Tomcat** and the **Spring WebSocket stack**.
+
+This project is **preconfigured with a workaround enabled by default**, but you can disable it to reproduce the failure scenario and understand the fix.
+
+---
 
 ## Simulating and Fixing Large Message Size Issues
 
